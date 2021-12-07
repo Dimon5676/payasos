@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Payasos.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AppDbContext>(opt => 
+    opt.UseNpgsql(config.GetConnectionString("Default")));
 
 var app = builder.Build();
 
@@ -19,6 +25,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",

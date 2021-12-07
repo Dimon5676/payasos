@@ -5,9 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(opt => 
     opt.UseNpgsql(config.GetConnectionString("Default")));
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 

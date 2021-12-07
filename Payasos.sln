@@ -1,6 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payasos", "Payasos\Payasos.csproj", "{0D6C82C0-8C3D-417A-9CC4-718A4F91BE78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payasos.Web", "Payasos.Web\Payasos.Web.csproj", "{0D6C82C0-8C3D-417A-9CC4-718A4F91BE78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payasos.Core", "Payasos.Core\Payasos.Core.csproj", "{95E9990A-FBCB-44C8-9892-E86A80E56000}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payasos.Infrastructure", "Payasos.Infrastructure\Payasos.Infrastructure.csproj", "{BD59B093-AC7E-46EA-BC7A-2EE058E5F1B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +16,13 @@ Global
 		{0D6C82C0-8C3D-417A-9CC4-718A4F91BE78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D6C82C0-8C3D-417A-9CC4-718A4F91BE78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D6C82C0-8C3D-417A-9CC4-718A4F91BE78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95E9990A-FBCB-44C8-9892-E86A80E56000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95E9990A-FBCB-44C8-9892-E86A80E56000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95E9990A-FBCB-44C8-9892-E86A80E56000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95E9990A-FBCB-44C8-9892-E86A80E56000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD59B093-AC7E-46EA-BC7A-2EE058E5F1B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD59B093-AC7E-46EA-BC7A-2EE058E5F1B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD59B093-AC7E-46EA-BC7A-2EE058E5F1B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD59B093-AC7E-46EA-BC7A-2EE058E5F1B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

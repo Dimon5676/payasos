@@ -1,0 +1,12 @@
+@model Payasos.Core.ViewModels.RegisterViewModel
+
+<h1>Registration</h1>
+<form style="display: flex; flex-direction: column" method="post">
+    <input asp-for="OrganisationName" type="text" placeholder="Organisation name">
+    <input asp-for="FirstName" type="text" placeholder="Your first name">
+    <input asp-for="LastName" type="text" placeholder="Your last name">
+    <input asp-for="SecondName" type="text" placeholder="Your second name">
+    <input asp-for="Email" type="email" placeholder="Email">
+    <input asp-for="Password" type="password" placeholder="Password">
+    <input type="submit" value="register">
+</form>

@@ -6,6 +6,8 @@ namespace Payasos.Infrastructure;
 
 public class AppDbContext : IdentityDbContext<AppUser>
 {
+    public DbSet<Organization> Organizations { get; set; }
+
     public AppDbContext(DbContextOptions options) : base(options)
     {
         

@@ -1,12 +1,21 @@
 @model Payasos.Core.ViewModels.RegisterViewModel
+<div id="main_container">
+    <div id="header">
+        <h1>Registration page</h1>
+    </div>
+<div id="comp_registerForm">
+<!--    <link rel="stylesheet" href="css/compRegisterPage.css"/>-->
 
-<h1>Registration</h1>
-<form style="display: flex; flex-direction: column" method="post">
-    <input asp-for="OrganisationName" type="text" placeholder="Organisation name">
-    <input asp-for="FirstName" type="text" placeholder="Your first name">
-    <input asp-for="LastName" type="text" placeholder="Your last name">
-    <input asp-for="SecondName" type="text" placeholder="Your second name">
-    <input asp-for="Email" type="email" placeholder="Email">
-    <input asp-for="Password" type="password" placeholder="Password">
-    <input type="submit" value="register">
-</form>
+    <form method="post" class="reg_input_forms">
+        <input asp-for="OrganisationName" type="text" placeholder="Название организации">
+        <input asp-for="FirstName" type="text" placeholder="Фамилия">
+        <input asp-for="LastName" type="text" placeholder="Имя">
+        <input asp-for="SecondName" type="text" placeholder="Категория деятельности">
+        <input asp-for="Email" type="email" placeholder="Email адрес">
+        <input asp-for="Password" type="password" placeholder="Пароль">
+        <input id="reg_btn" type="submit" value="Зарегистрироваться">
+        <br />
+        <label><input type="checkbox" value="Value">Я принимаю лицензионное сооглашение</label>
+    </form>
+</div>
+</div>    

@@ -1,7 +1,7 @@
 @model Payasos.Core.ViewModels.RegisterViewModel
 @section Styles
 {
-    <link  rel="stylesheet" href="css/compRegisterPage.css" asp-append-version="true"/>
+    <link  rel="stylesheet" href="~/css/compRegisterPage.css" asp-append-version="true"/>
 }
 <div id="main_container">
     <div id="header">
@@ -15,9 +15,9 @@
         <input asp-for="SecondName" type="text" placeholder="Категория деятельности">
         <input asp-for="Email" type="email" placeholder="Email адрес">
         <input asp-for="Password" type="password" placeholder="Пароль">
-        <input id="reg_btn" type="submit" value="Зарегистрироваться">
+        <input id="reg_btn" type="submit" value="Регистрация">
         <br />
-        <label><input type="checkbox" value="Value">Я принимаю лицензионное сооглашение</label>
+        <label><input type="checkbox" value="Value">Я принимаю лицензионное соглашение</label>
     </form>
 </div>
 </div>    

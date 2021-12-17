@@ -1,26 +1,33 @@
 @model Payasos.Core.ViewModels.RegisterUserViewModel
 
-<div class="mt-5 min-h-screen flex items-center justify-center bg-green-100">
-<div class="bg-green-400 p-8 rounded-lg shadow-3x2 w-2/6 flex items-center justify-center">
-    <form method="post" asp-action="RegisterUserPost" class="space-y-4 ">
+<div class="min-h-screen flex items-center justify-center py-6 bg-green-100">
+<div class="bg-green-400 p-8 rounded-lg shadow-3x2 w-1/3 flex items-center justify-center">
+    <form method="post" asp-action="RegisterUserPost" class="space-y-3 ">
         
         <h2 class="text-3x1 font-bold mt-2 text-neutral-800 md:text-center">Создайте свой аккаунт</h2>
         <div>
-            <input asp-for="Code" type="text" class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Пригласительный код" >
+            <label>Пригласительный код</label>
+            <input asp-for="Code" type="text" class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Пригласительный код">
         </div>
+        
         <div>
+            <label>Фамилия</label>
             <input asp-for="FirstName" type="text" class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Фамилия">
         </div>
         <div>
-            <input asp-for="LastName" type="text"  class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Имя">
+            <label>Имя</label>
+            <input asp-for="LastName" type="text" class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Имя">
         </div>
         <div>
+            <label>Отчество</label>
             <input asp-for="SecondName" type="text" class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Отчество">
         </div>
         <div>
+            <label>Email</label>
             <input asp-for="Email" type="email" class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Email адрес">
         </div>
         <div>
+            <label>Пароль</label>
             <input asp-for="Password" type="password" class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Пароль">
         </div>
         <div>

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,7 +10,7 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-<header>
+<header > 
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container-fluid">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Payasos.Web</a>
@@ -31,11 +31,9 @@
         </div>
     </nav>
 </header>
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
+
+@RenderBody()
+
 
 <footer class="border-top footer text-muted">
     <div class="container">
@@ -49,3 +47,27 @@
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<style>
+    .container-fluid{
+        display: block;
+        position: fixed;
+        background-color: rgb(74 222 128);
+        color: #262626;
+        width: 100vw;
+        top: 0;
+        
+        }
+        html{
+        font-family: Comfortaa, sans-serif;
+        font-size: 16px;
+        
+        }
+        footer{
+          
+        background-color: rgb(74 222 128);
+                color: #262626;
+                width: 100vw;
+                bottom: 0;
+        }
+</style>

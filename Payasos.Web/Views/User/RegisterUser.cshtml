@@ -8,7 +8,8 @@
         <h1>Registration user page</h1>
     </div>
 <div id="comp_registerForm">
-    <form method="post" class="reg_input_forms">
+    <form method="post" asp-action="RegisterUserPost" class="reg_input_forms">
+        <input asp-for="Code" type="text" placeholder="Пригласительный код">
         <input asp-for="FirstName" type="text" placeholder="Фамилия">
         <input asp-for="LastName" type="text" placeholder="Имя">
         <input asp-for="SecondName" type="text" placeholder="Категория деятельности">

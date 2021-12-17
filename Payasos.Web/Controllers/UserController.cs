@@ -28,14 +28,30 @@ public class UserController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> Register(RegisterViewModel viewModel)
+    public async Task<IActionResult> RegisterUserPost(RegisterUserViewModel viewModel)
     {
-        var result = await _userService.Register(viewModel);
-        if (result.Succeeded)
+        try
         {
-            return Ok("User created");
+            return Ok(await _userService.RegisterUser(viewModel));
         }
-
-        return Problem(result.Errors.ToString());
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return Problem(e.Message);
+        }
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> RegisterOrganisationPost(RegisterOrganisationViewModel viewModel)
+    {
+        try
+        {
+            return Ok(await _userService.RegisterOrganisation(viewModel));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return Problem(e.Message);
+        }
     }
 }

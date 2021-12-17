@@ -1,8 +1,6 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Payasos.Core.Services;
 using Payasos.Core.ViewModels;
-using Payasos.Models;
 
 namespace Payasos.Controllers;
 
@@ -16,9 +14,17 @@ public class UserController : Controller
     }
     
     [HttpGet]
-    public IActionResult Register()
+    [Route("register/organisation")]
+    public IActionResult RegisterOrganisation()
     {
         return View();
+    }
+    
+    [HttpGet]
+    [Route("register/user/{code?}")]
+    public IActionResult RegisterUser(string code)
+    {
+        return View("RegisterUser");
     }
     
     [HttpPost]

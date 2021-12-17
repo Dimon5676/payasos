@@ -24,7 +24,7 @@ public class UserController : Controller
     [Route("register/user/{code?}")]
     public IActionResult RegisterUser(string code)
     {
-        return View("RegisterUser");
+        return View("RegisterUser", new RegisterUserViewModel { Code = code});
     }
     
     [HttpPost]

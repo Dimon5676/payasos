@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Payasos.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Payasos.Controllers;
 

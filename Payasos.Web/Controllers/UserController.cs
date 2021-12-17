@@ -30,7 +30,8 @@ public class UserController : Controller
     [HttpPost]
     public async Task<IActionResult> RegisterUserPost(RegisterUserViewModel viewModel)
     {
-        try
+        if (!ModelState.IsValid) return View("RegisterUser");
+            try
         {
             return Ok(await _userService.RegisterUser(viewModel));
         }
@@ -44,6 +45,7 @@ public class UserController : Controller
     [HttpPost]
     public async Task<IActionResult> RegisterOrganisationPost(RegisterOrganisationViewModel viewModel)
     {
+        if (!ModelState.IsValid) return View("RegisterOrganisation");
         try
         {
             return Ok(await _userService.RegisterOrganisation(viewModel));

@@ -17,4 +17,9 @@ public class OrganisationRepository : IOrganisationRepository
         _context.SaveChanges();
         return res.Entity;
     }
+
+    public Organization GetOrganisationByCode(string code)
+    {
+        return _context.Organizations.FirstOrDefault(o => o.Code == code);
+    }
 }

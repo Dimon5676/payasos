@@ -16,27 +16,45 @@ public class UserService
         _userManager = userManager;
         _organisationRepository = organisationRepository;
     }
-    public async Task<IdentityResult> Register(RegisterViewModel viewModel)
+
+    public async Task<AppUser> RegisterUser(RegisterUserViewModel viewModel)
     {
+        var org = _organisationRepository.GetOrganisationByCode(viewModel.Code);
+        if (org == null) throw new Exception("Organisation not found");
         var user = new AppUser
         {
             FirstName = viewModel.FirstName,
             LastName = viewModel.LastName,
             SecondName = viewModel.SecondName,
             Email = viewModel.Email,
-            IsAdmin = viewModel is RegisterOrganisationViewModel,
-            UserName = viewModel.Email
+            IsAdmin = false,
+            UserName = viewModel.Email,
+            Organization = org
         };
         var result = await _userManager.CreateAsync(user, viewModel.Password);
-        if (result.Succeeded && viewModel is RegisterOrganisationViewModel)
+        if (!result.Succeeded) throw new Exception(String.Join(", ", result.Errors.Select(e => e.Description)));
+        return user;
+    }
+    
+    public async Task<Organization> RegisterOrganisation(RegisterOrganisationViewModel viewModel)
+    {
+        var rand = new Random();
+        var user = new AppUser
         {
-            var organisation = new Organization
+            FirstName = viewModel.FirstName,
+            LastName = viewModel.LastName,
+            SecondName = viewModel.SecondName,
+            Email = viewModel.Email,
+            IsAdmin = true,
+            UserName = viewModel.Email,
+            Organization = new Organization
             {
-                Name = ((RegisterOrganisationViewModel)viewModel).OrganisationName
-            };
-            var org = _organisationRepository.AddOrganisation(organisation);
-            user.Organization = org;
-        }
-        return result;
+                Name = viewModel.OrganisationName,
+                Code = "" + (char)rand.Next('A', 'Z') + rand.Next(0, 10) + (char)rand.Next('A', 'Z') + rand.Next(0, 10)
+            } 
+        };
+        var result = await _userManager.CreateAsync(user, viewModel.Password);
+        if (!result.Succeeded) throw new Exception(String.Join(", ", result.Errors.Select(e => e.Description)));
+        return user.Organization;
     }
 }

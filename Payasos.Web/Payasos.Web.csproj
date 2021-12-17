@@ -74,8 +74,4 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\LICENSE.md" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="wwwroot\lib" />
-    </ItemGroup>
-
 </Project>

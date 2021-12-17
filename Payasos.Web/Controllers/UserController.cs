@@ -24,6 +24,7 @@ public class UserController : Controller
     [Route("register/user/{code?}")]
     public IActionResult RegisterUser(string code)
     {
+        ModelState.Clear();
         return View("RegisterUser", new RegisterUserViewModel { Code = code});
     }
     

@@ -24,15 +24,15 @@ public class UserService
             LastName = viewModel.LastName,
             SecondName = viewModel.SecondName,
             Email = viewModel.Email,
-            IsAdmin = true,
+            IsAdmin = viewModel is RegisterOrganisationViewModel,
             UserName = viewModel.Email
         };
         var result = await _userManager.CreateAsync(user, viewModel.Password);
-        if (result.Succeeded)
+        if (result.Succeeded && viewModel is RegisterOrganisationViewModel)
         {
             var organisation = new Organization
             {
-                Name = viewModel.OrganisationName
+                Name = ((RegisterOrganisationViewModel)viewModel).OrganisationName
             };
             var org = _organisationRepository.AddOrganisation(organisation);
             user.Organization = org;

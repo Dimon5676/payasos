@@ -1,11 +1,13 @@
 @model Payasos.Core.ViewModels.RegisterViewModel
+@section Styles
+{
+    <link  rel="stylesheet" href="css/compRegisterPage.css" asp-append-version="true"/>
+}
 <div id="main_container">
     <div id="header">
         <h1>Registration page</h1>
     </div>
 <div id="comp_registerForm">
-<!--    <link rel="stylesheet" href="css/compRegisterPage.css"/>-->
-
     <form method="post" class="reg_input_forms">
         <input asp-for="OrganisationName" type="text" placeholder="Название организации">
         <input asp-for="FirstName" type="text" placeholder="Фамилия">

@@ -6,7 +6,8 @@
     <title>@ViewData["Title"] - Payasos.Web</title>
     <link rel="stylesheet" href="css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/Payasos.styles.css" asp-append-version="true"/>
+
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
 <header>

@@ -29,12 +29,14 @@ public class UserController : Controller
     }
 
     [HttpGet]
+    [Route("/login")]
     public IActionResult Login()
     {
         return View();
     }
     
     [HttpGet]
+    [Route("/logout")]
     public IActionResult Logout()
     {
         _userService.Logout();
@@ -42,13 +44,13 @@ public class UserController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> Login(LoginViewModel model)
+    public async Task<IActionResult> LoginPost(LoginViewModel model)
     {
-        if (!ModelState.IsValid) return View(model);
+        if (!ModelState.IsValid) return View("Login", model);
         var result = await _userService.Login(model);
         if (result) return RedirectToAction("Index", "Home");
         ModelState.AddModelError("", "Неверный логин или пароль");
-        return View(model);
+        return View("Login", model);
     }
 
     

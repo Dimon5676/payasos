@@ -13,18 +13,24 @@
 <header class="sticky top-0 z-50"> 
     <nav class=" navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
         <div class="container-fluid  text-2xl">
-            <a class="navbar-brand text-white ml-3" asp-area="" asp-controller="Home" asp-action="Index">Payasos.Web</a>
+            <a class="navbar-brand text-white ml-3" asp-area="" asp-controller="Home" asp-action="Index">PAYASOS</a>
+            <div class="flex items-center justify-center space-x-10 text-2xl">
+                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                <a class="nav-link text-white" asp-area="" asp-controller="Lk" asp-action="Organisation">Личный кабинет</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a class="nav-link text-white  border border-green-300 rounded-md mr-20" asp-area="" asp-controller="User" asp-action="Logout">Logout</a>
+                }
+                else
+                {
+                    <a class="nav-link text-white  border border-green-300 rounded-md mr-20" asp-area="" asp-controller="User" asp-action="Login">Login</a>
+                    <a class="nav-link text-white border border-green-300 rounded-md ml-20" asp-area="" asp-controller="User" asp-action="RegisterOrganisation">Sing Up</a>   
+                }
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="flex items-center justify-center space-x-10 text-2xl">
-                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                <a class="nav-link text-white  border border-green-300 rounded-md mr-20" asp-area="" asp-controller="User" asp-action="Login">Login</a>
-                <a class="nav-link text-white border border-green-300 rounded-md ml-20" asp-area="" asp-controller="User" asp-action="RegisterOrganisation">Registration</a>
-                  
-            </div>
         </div>
     </nav>
 </header>
@@ -33,8 +39,8 @@
 
 
 <footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2021 - Payasos.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <div class="container text-center">
+        &copy; 2021 - Payasos.Web - <a  asp-area="" asp-controller="Home" asp-action="License">Лицензия</a>
     </div>
 </footer>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -51,11 +57,13 @@
         font-size: 16px;
         }
         footer{
-          
+        display: block;
+        position: fixed; 
+        bottom: 0; 
         background-color: rgb(74 222 128);
                 color: #262626;
                 width: 100vw;
-                bottom: 0;
+               
         }
         
         .container-fluid{

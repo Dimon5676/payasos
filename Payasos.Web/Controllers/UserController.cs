@@ -29,12 +29,14 @@ public class UserController : Controller
     }
 
     [HttpGet]
+    [Route("/login")]
     public IActionResult Login()
     {
         return View();
     }
     
     [HttpGet]
+    [Route("/logout")]
     public IActionResult Logout()
     {
         _userService.Logout();

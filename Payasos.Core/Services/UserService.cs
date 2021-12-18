@@ -9,14 +9,33 @@ public class UserService
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly IOrganisationRepository _organisationRepository;
+    private readonly SignInManager<AppUser> _signInManager;
 
     public UserService(UserManager<AppUser> userManager,
-        IOrganisationRepository organisationRepository)
+        IOrganisationRepository organisationRepository,
+        SignInManager<AppUser> signInManager)
     {
         _userManager = userManager;
         _organisationRepository = organisationRepository;
+        _signInManager = signInManager;
     }
+    
+    public async Task<bool> Login(LoginViewModel model)
+    {
+        var result = await _signInManager.PasswordSignInAsync(
+            userName: model.Email, 
+            password: model.Password, 
+            isPersistent: true, 
+            lockoutOnFailure: false);
 
+        return result.Succeeded;
+    }
+    
+    public async Task Logout()
+    {
+        await _signInManager.SignOutAsync();
+    }
+    
     public async Task<AppUser> RegisterUser(RegisterUserViewModel viewModel)
     {
         var org = _organisationRepository.GetOrganisationByCode(viewModel.Code);

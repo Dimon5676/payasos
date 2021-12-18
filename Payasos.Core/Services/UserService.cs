@@ -1,4 +1,6 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Payasos.Core.Entities;
 using Payasos.Core.Repositories;
 using Payasos.Core.ViewModels;
@@ -77,9 +79,12 @@ public class UserService
         return user.Organization;
     }
 
-    public IEnumerable<UserViewModel> GetUsers()
+    public async Task<IEnumerable<UserViewModel>> GetUsers(ClaimsPrincipal claims)
     {
-        return _userManager.Users.Select(e => new UserViewModel
+        var user = await _userManager.GetUserAsync(claims);
+        return _userManager.Users
+            .Include(x => x.Organization)
+            .Select(e => new UserViewModel
         {
             Email = e.Email,
             FirstName = e.FirstName,

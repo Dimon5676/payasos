@@ -16,4 +16,10 @@
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Identity, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+        <HintPath>..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\6.0.0\Microsoft.AspNetCore.Identity.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

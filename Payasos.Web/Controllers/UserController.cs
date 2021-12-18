@@ -27,6 +27,30 @@ public class UserController : Controller
         ModelState.Clear();
         return View("RegisterUser", new RegisterUserViewModel { Code = code});
     }
+
+    [HttpGet]
+    public IActionResult Login()
+    {
+        return View();
+    }
+    
+    [HttpGet]
+    public IActionResult Logout()
+    {
+        _userService.Logout();
+        return RedirectToAction("Index", "Home");
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Login(LoginViewModel model)
+    {
+        if (!ModelState.IsValid) return View(model);
+        var result = await _userService.Login(model);
+        if (result) return RedirectToAction("Index", "Home");
+        ModelState.AddModelError("", "Неверный логин или пароль");
+        return View(model);
+    }
+
     
     [HttpPost]
     public async Task<IActionResult> RegisterUserPost(RegisterUserViewModel viewModel)

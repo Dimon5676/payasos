@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Payasos.Infrastructure;
@@ -11,9 +12,10 @@ using Payasos.Infrastructure;
 namespace Payasos.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211217185152_Registration2")]
+    partial class Registration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -214,6 +216,7 @@ namespace Payasos.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("SecondName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("SecurityStamp")
@@ -339,7 +342,7 @@ namespace Payasos.Infrastructure.Migrations
             modelBuilder.Entity("Payasos.Core.Entities.AppUser", b =>
                 {
                     b.HasOne("Payasos.Core.Entities.Organization", "Organization")
-                        .WithMany()
+                        .WithMany("Employees")
                         .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -366,6 +369,8 @@ namespace Payasos.Infrastructure.Migrations
 
             modelBuilder.Entity("Payasos.Core.Entities.Organization", b =>
                 {
+                    b.Navigation("Employees");
+
                     b.Navigation("Roles");
                 });
 #pragma warning restore 612, 618

@@ -27,6 +27,11 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
     .AddSignInManager<SignInManager<AppUser>>()
     .AddEntityFrameworkStores<AppDbContext>();
 
+builder.Services.ConfigureApplicationCookie(opt =>
+{
+    opt.LoginPath = new PathString("/login");
+    opt.LogoutPath = new PathString("/logout");
+});
 
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<IOrganisationRepository, OrganisationRepository>();

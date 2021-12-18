@@ -1,0 +1,28 @@
+@model IEnumerable<Payasos.Core.ViewModels.UserViewModel>
+
+@{
+    ViewData["Title"] = "lk";
+}
+<table>
+    <thead>
+    <tr>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Отчество</td>
+        <td>Email</td>
+        <td>Должность</td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.FirstName</td>
+            <td>@user.LastName</td>
+            <td>@user.SecondName</td>
+            <td>@user.Email</td>
+            <td>@(user.IsAdmin ? "Руководитель" : "Сотрудник")</td>
+        </tr>
+    }
+    </tbody>
+</table>

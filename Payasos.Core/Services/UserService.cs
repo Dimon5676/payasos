@@ -57,4 +57,16 @@ public class UserService
         if (!result.Succeeded) throw new Exception(String.Join(", ", result.Errors.Select(e => e.Description)));
         return user.Organization;
     }
+
+    public IEnumerable<UserViewModel> GetUsers()
+    {
+        return _userManager.Users.Select(e => new UserViewModel
+        {
+            Email = e.Email,
+            FirstName = e.FirstName,
+            LastName = e.LastName,
+            SecondName = e.SecondName,
+            IsAdmin = e.IsAdmin
+        });
+    }
 }

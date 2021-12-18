@@ -11,25 +11,19 @@
 </head>
 <body>
 <header class="sticky top-0 z-50"> 
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Payasos.Web</a>
+    <nav class=" navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <div class="container-fluid  text-2xl">
+            <a class="navbar-brand text-white ml-3" asp-area="" asp-controller="Home" asp-action="Index">Payasos.Web</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="RegisterOrganisation">Registration</a>
-                        </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                </ul>
+            <div class="flex items-center justify-center space-x-10 text-2xl">
+                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <a class="nav-link text-white  border border-green-300 rounded-md mr-20" asp-area="" asp-controller="User" asp-action="Login">Login</a>
+                <a class="nav-link text-white border border-green-300 rounded-md ml-20" asp-area="" asp-controller="User" asp-action="RegisterOrganisation">Registration</a>
+                  
             </div>
         </div>
     </nav>
@@ -62,5 +56,12 @@
                 color: #262626;
                 width: 100vw;
                 bottom: 0;
+        }
+        
+        .container-fluid{
+        background-color: rgb(78,171,116);
+                        color: #262626;
+                        width: 100vw;
+                        height: 10vh;
         }
 </style>

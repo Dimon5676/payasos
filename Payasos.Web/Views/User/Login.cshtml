@@ -3,3 +3,22 @@
 @{
     ViewData["Title"] = "Login";
 }
+
+ <form method="post" asp-action="Login" class="space-y-3 ">
+        
+        <h2 class="text-3x1 font-bold mt-2 text-neutral-800 md:text-center">Войдите в свой аккаунт</h2>
+       
+        <div>
+            <label>Email</label>
+            <input asp-for="Email" type="email" class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Email адрес">
+            <span asp-validation-for="Email" class="text-red-500"></span>
+        </div>
+        <div>
+            <label>Пароль</label>
+            <input asp-for="Password" type="password" class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Пароль">
+            <span asp-validation-for="Password" class="text-red-500"></span>
+        </div>
+        <div>
+            <input id="reg_btn" type="submit" class="py-1 px-4 w-full rounded-md bg-sky-600 text-neutral-800" value="Регистрация">
+        </div>
+       </form>

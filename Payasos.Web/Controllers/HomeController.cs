@@ -9,7 +9,8 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Privacy()
+    [Route("license")]
+    public IActionResult License()
     {
         return View();
     }

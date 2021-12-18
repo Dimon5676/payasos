@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+<header class="sticky top-0 z-50"> 
+    <nav class=" navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <div class="container-fluid  text-2xl">
+            <a class="navbar-brand text-white ml-3" asp-area="" asp-controller="Home" asp-action="Index">PAYASOS</a>
+            <div class="flex items-center justify-center space-x-10 text-2xl">
+                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                <a class="nav-link text-white" asp-area="" asp-controller="Lk" asp-action="Organisation">Личный кабинет</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a class="nav-link text-white  border border-green-300 rounded-md mr-20" asp-area="" asp-controller="User" asp-action="Logout">Logout</a>
+                }
+                else
+                {
+                    <a class="nav-link text-white  border border-green-300 rounded-md mr-20" asp-area="" asp-controller="User" asp-action="Login">Login</a>
+                    <a class="nav-link text-white border border-green-300 rounded-md ml-20" asp-area="" asp-controller="User" asp-action="RegisterOrganisation">Sing Up</a>   
+                }
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+@RenderBody()
+
+
+<footer class="border-top footer text-muted">
+    <div class="container text-center">
+        &copy; 2021 - Payasos.Web - <a  asp-area="" asp-controller="Home" asp-action="License">Лицензия</a>
+    </div>
+</footer>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+<style>
+    html{
+        font-family: Comfortaa, sans-serif;
+        font-size: 16px;
+        }
+        footer{
+        display: block;
+        position: fixed; 
+        bottom: 0; 
+        background-color: rgb(74 222 128);
+                color: #262626;
+                width: 100vw;
+               
+        }
+        
+        .container-fluid{
+        background-color: rgb(78,171,116);
+                        color: #262626;
+                        width: 100vw;
+                        height: 10vh;
+        }
+</style>

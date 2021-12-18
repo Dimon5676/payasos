@@ -1,0 +1,30 @@
+@model IEnumerable<Payasos.Core.ViewModels.UserViewModel>
+
+@{
+    ViewData["Title"] = "Личный кабинет";
+}
+<div class=" mt-7 container flex justify-center mx-auto flex flex-col w-full border-b border-gray-200 shadow">
+<table class="divide-y divide-gray-300 bg-gray-50" >
+    <thead>
+    <tr>
+        <td class="px-6 py-2 bg-neutral-800 text-base text-green-500">Имя</td>
+        <td class="px-6 py-2 bg-neutral-800 text-base text-green-500">Фамилия</td>
+        <td class="px-6 py-2 bg-neutral-800 text-base text-green-500">Отчество</td>
+        <td class="px-6 py-2 bg-neutral-800 text-base text-green-500">Email</td>
+        <td class="px-6 py-2 bg-neutral-800 text-base text-green-500">Должность</td>
+    </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-300">
+    @foreach (var user in Model)
+    {
+        <tr class="whitespace-nowrap">
+            <td class=" mr-3 w-6 h-6 text-neutral-400" fill="none">@user.FirstName</td>
+            <td class=" mr-3 w-6 h-6 text-neutral-400" fill="none">@user.LastName</td>
+            <td class=" mr-3 w-6 h-6 text-neutral-400" fill="none">@user.SecondName</td>
+            <td class=" mr-3 w-6 h-6 text-neutral-400" fill="none">@user.Email</td>
+            <td class=" mr-3 w-6 h-6 text-neutral-400" fill="none">@(user.IsAdmin ? "Руководитель" : "Сотрудник")</td>
+        </tr>
+    }
+    </tbody>
+</table>
+</div>

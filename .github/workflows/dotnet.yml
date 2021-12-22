@@ -11,17 +11,16 @@ jobs:
     name: Deploy to Heroku
     runs-on: ubuntu-18.04
     steps:
-
-    # Clone the repository
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    # Build Docker image
-    - name: Docker build
-      run: docker login --username=_ --password=${{ secrets.HEROKU_API_KEY }} registry.heroku.com
-
-    # Push the Docker image to Heroku Container Registry
-    - name: Publish
-      run: |
-        heroku container:push web -a payasos
-        heroku container:release web -a payasos
+      - uses: actions/checkout@v1
+      - name: Login to Heroku Container registry
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:login
+      - name: Build and push
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:push -a payasos web
+      - name: Release
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:release -a payasos web

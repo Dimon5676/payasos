@@ -1,3 +1,4 @@
+using System.Net;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Payasos.Core.Entities;
@@ -38,6 +39,8 @@ builder.Services.ConfigureApplicationCookie(opt =>
 
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<IOrganisationRepository, OrganisationRepository>();
+
+builder.WebHost.UseKestrel(options => {options.Listen(IPAddress.Any, 8080);});
 
 var app = builder.Build();
 

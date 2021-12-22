@@ -40,8 +40,6 @@ builder.Services.ConfigureApplicationCookie(opt =>
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<IOrganisationRepository, OrganisationRepository>();
 
-builder.WebHost.UseKestrel(options => {options.Listen(IPAddress.Any, 80);});
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

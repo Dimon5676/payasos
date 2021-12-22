@@ -11,9 +11,31 @@ var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
 // Add services to the container.
+string connectionString = null;
+
+string envVar = Environment.GetEnvironmentVariable("DATABASE_URL");
+
+if (string.IsNullOrEmpty(envVar))
+{
+    connectionString = config.GetConnectionString("Default");
+}
+else
+{
+    //parse database URL. Format is postgres://<username>:<password>@<host>/<dbname>
+    var uri = new Uri(envVar);
+    var username = uri.UserInfo.Split(':')[0];
+    var password = uri.UserInfo.Split(':')[1];
+    connectionString =
+        "; Database=" + uri.AbsolutePath.Substring(1) +
+        "; Username=" + username +
+        "; Password=" + password +
+        "; Port=" + uri.Port +
+        "; SSL Mode=Require; Trust Server Certificate=true;";
+}
+
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
-    opt.UseNpgsql(config.GetConnectionString("Default"));
+    opt.UseNpgsql(connectionString);
     opt.EnableSensitiveDataLogging();
 });
 builder.Services.AddControllersWithViews();

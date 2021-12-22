@@ -23,4 +23,4 @@ WORKDIR /app
 COPY --from=publish /app .
 
 #ENTRYPOINT ["dotnet", "Payasos.Web.dll"]
-CMD ASPNETCORE_URLS=http://*:$PORT 
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet Payasos.Web.dll

@@ -4,23 +4,23 @@
     ViewData["Title"] = "Настройки организации";
 }
 
-<form>
-    <div>
-        <label>Название организации</label>
-        <input type="text" asp-for="OrgName" placeholder="Название организации">
+<form style="margin-top: 32px;" class="mx-5">
+    <div class="my-3  ">
+        <label class="text-lg">Название организации:</label>
+        <input type="text" asp-for="OrgName" class="mx-3 border border-green-400 rounded-md text-center text-lg" placeholder="Название организации">
         <span asp-validation-for="OrgName" class="text-red-500"></span>
     </div>
-    <div>
-        <label>Пригласительный код</label>
-        <input type="text" asp-for="InviteCode" placeholder="Пригласительный код">
+    <div class="my-3">
+        <label class="text-lg">Пригласительный код:</label>
+        <input type="text" asp-for="InviteCode"  style="padding-left: 1px" class="mx-5  border border-green-400 rounded-md text-center text-lg" placeholder="Пригласительный код">
         <span asp-validation-for="InviteCode" class="text-red-500"></span>
     </div>
-    <input type="submit" value="Изменить">
+    <input type="submit" value="Изменить" style="width: 200px" class="mx-9 border border-green-400 resize-x  text-black hover:bg-green-400 hover:text-white rounded-md text-center text-lg">
 </form>
-<form>
+<form   class=" my-5 mx-5">
     <h1>Добавление роли</h1>
-    <input type="text" name="role" id="role" placeholder="Название роли">
-    <input type="submit" value="Добавить роль">
+    <input type="text" name="role" id="role" placeholder="Название роли" class="text-lg">
+    <input type="submit" value="Добавить роль" style="width: 200px" class="mx-9 border border-green-400 text-black hover:bg-green-400 hover:text-white rounded-md text-center text-lg">
 </form>
 @if (Model.Roles != null)
 {

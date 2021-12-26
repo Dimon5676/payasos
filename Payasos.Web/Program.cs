@@ -57,6 +57,7 @@ builder.Services.ConfigureApplicationCookie(opt =>
 });
 
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<OrganisationService>();
 builder.Services.AddScoped<IOrganisationRepository, OrganisationRepository>();
 
 var serviceProvider = builder.Services.BuildServiceProvider();

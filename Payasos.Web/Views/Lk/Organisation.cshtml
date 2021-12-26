@@ -1,9 +1,11 @@
-@model IEnumerable<Payasos.Core.ViewModels.UserViewModel>
+@model Payasos.Core.ViewModels.LkViewModel
 
 @{
     ViewData["Title"] = "Личный кабинет";
 }
 <div class=" mt-7 container flex justify-center mx-auto flex flex-col w-full border-b border-gray-200 shadow">
+<h1>@Model.OrgName</h1>
+<h3>Пригласительный код: @Model.InviteCode</h3>
 <table class="divide-y divide-gray-300 bg-blue-500" >
     <thead>
     <tr>
@@ -15,7 +17,7 @@
     </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-300">
-    @foreach (var user in Model)
+    @foreach (var user in Model.Users)
     {
         <tr class="whitespace-nowrap">
             <td class=" mr-3 w-6 h-6 text-neutral-400" fill="none">@user.FirstName</td>

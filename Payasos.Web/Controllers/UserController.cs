@@ -61,8 +61,7 @@ public class UserController : Controller
         try
         {
             var user = await _userService.RegisterUser(viewModel);
-            if (user != null) RedirectToAction("Index", "Home");
-            return View("RegisterUser");
+            return RedirectToAction("Index", "Home");
         }
         catch (Exception e)
         {
@@ -79,8 +78,7 @@ public class UserController : Controller
         try
         {
             var org = await _userService.RegisterOrganisation(viewModel);
-            if (org != null) return RedirectToAction("Index", "Home");
-            return View("RegisterOrganisation");
+            return RedirectToAction("Index", "Home");
         }
         catch (Exception e)
         {

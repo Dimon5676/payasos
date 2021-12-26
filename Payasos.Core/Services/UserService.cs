@@ -60,6 +60,8 @@ public class UserService
     public async Task<Organization> RegisterOrganisation(RegisterOrganisationViewModel viewModel)
     {
         var rand = new Random();
+        var o = _organisationRepository.GetOrganisationByName(viewModel.OrganisationName);
+        if (o != null) throw new Exception("Организация с таким именем уже существует");
         var user = new AppUser
         {
             FirstName = viewModel.FirstName,

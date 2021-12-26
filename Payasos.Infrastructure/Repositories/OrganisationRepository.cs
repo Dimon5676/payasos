@@ -22,4 +22,9 @@ public class OrganisationRepository : IOrganisationRepository
     {
         return _context.Organizations.FirstOrDefault(o => o.Code == code);
     }
+
+    public Organization GetOrganisationByName(string name)
+    {
+        return _context.Organizations.FirstOrDefault(o => o.Name == name);
+    }
 }

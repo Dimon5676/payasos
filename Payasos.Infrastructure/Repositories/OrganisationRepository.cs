@@ -27,4 +27,9 @@ public class OrganisationRepository : IOrganisationRepository
     {
         return _context.Organizations.FirstOrDefault(o => o.Name == name);
     }
+
+    public void SaveChanges()
+    {
+        _context.SaveChanges();
+    }
 }

@@ -4,6 +4,6 @@ namespace Payasos.Core.ViewModels;
 
 public class RegisterUserViewModel : RegisterViewModel
 {
-    [Required] 
+    [Required(ErrorMessage = "Введите пригласительный код")] 
     public string Code { get; set; } = null!;
 }

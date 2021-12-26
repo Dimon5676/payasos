@@ -16,9 +16,9 @@ public class LkController : Controller
     
     [HttpGet]
     [Route("lk")]
-    public async Task<ViewResult> Organisation()
+    public ViewResult Organisation()
     {
-        var users = await _userService.GetUsers(User);
+        var users = _userService.GetUsers(User);
         return View(users);
     }
 }

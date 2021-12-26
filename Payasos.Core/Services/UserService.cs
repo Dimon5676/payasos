@@ -79,11 +79,15 @@ public class UserService
         return user.Organization;
     }
 
-    public async Task<IEnumerable<UserViewModel>> GetUsers(ClaimsPrincipal claims)
+    public IEnumerable<UserViewModel> GetUsers(ClaimsPrincipal claims)
     {
-        var user = await _userManager.GetUserAsync(claims);
+        // var user = await _userManager.GetUserAsync(claims);
+        var user = _userManager.Users
+            .Include(e => e.Organization)
+            .FirstOrDefault(e => e.UserName == claims.Identity.Name);
         return _userManager.Users
             .Include(x => x.Organization)
+            .Where(x => x.Organization == user.Organization)
             .Select(e => new UserViewModel
         {
             Email = e.Email,

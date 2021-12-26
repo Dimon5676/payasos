@@ -45,7 +45,7 @@
 
 <footer class="border-top footer text-muted">
     <div class="container text-center">
-        &copy; 2021 - Payasos - <a  asp-area="" asp-controller="Home" asp-action="License">Лицензия</a>
+        &copy; @DateTime.Now.Year - Payasos - <a  asp-area="" asp-controller="Home" asp-action="License">Лицензия</a>
     </div>
 </footer>
 <script src="~/js/site.js" asp-append-version="true"></script>
@@ -57,12 +57,13 @@
     html{
         font-family: Comfortaa, sans-serif;
         font-size: 16px;
+        padding-bottom: 32px;
         }
         footer{
         display: block;
         position: fixed; 
         bottom: 0; 
-        background-color: rgb(74 222 128);
+        background-color: rgb(78,171,116);
                 color: #262626;
                 width: 100vw;
                

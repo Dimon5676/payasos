@@ -59,6 +59,16 @@ builder.Services.ConfigureApplicationCookie(opt =>
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<IOrganisationRepository, OrganisationRepository>();
 
+var serviceProvider = builder.Services.BuildServiceProvider();
+try
+{
+    var dbContext = serviceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+}
+catch
+{
+}
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,0 +1,42 @@
+@model Payasos.Core.ViewModels.OrganisationSettingsViewModel
+
+@{
+    ViewData["Title"] = "Настройки организации";
+}
+
+<form>
+    <div>
+        <label>Название организации</label>
+        <input type="text" asp-for="OrgName" placeholder="Название организации">
+        <span asp-validation-for="OrgName" class="text-red-500"></span>
+    </div>
+    <div>
+        <label>Пригласительный код</label>
+        <input type="text" asp-for="InviteCode" placeholder="Пригласительный код">
+        <span asp-validation-for="InviteCode" class="text-red-500"></span>
+    </div>
+    <input type="submit" value="Изменить">
+</form>
+<form>
+    <h1>Добавление роли</h1>
+    <input type="text" name="role" id="role" placeholder="Название роли">
+    <input type="submit" value="Добавить роль">
+</form>
+@if (Model.Roles != null)
+{
+    <table>
+        <thead>
+        <tr>
+            <td>Название</td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var role in Model.Roles)
+        {
+            <tr>
+                <td>@role</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

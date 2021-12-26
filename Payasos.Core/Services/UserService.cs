@@ -74,6 +74,7 @@ public class UserService
             Organization = new Organization
             {
                 Name = viewModel.OrganisationName,
+                Roles = new List<Role>(),
                 Code = "" + (char)rand.Next('A', 'Z') + rand.Next(0, 10) + (char)rand.Next('A', 'Z') + rand.Next(0, 10)
             } 
         };

@@ -1,3 +1,6 @@
+@inject UserManager<AppUser> _userManager
+@using Microsoft.AspNetCore.Identity
+@using Payasos.Core.Entities
 @model Payasos.Core.ViewModels.LkViewModel
 
 @{
@@ -6,6 +9,12 @@
 <div class=" mt-7 container flex justify-center mx-auto flex flex-col w-full border-b border-gray-200 shadow">
 <h1>@Model.OrgName</h1>
 <h3>Пригласительный код: @Model.InviteCode</h3>
+
+    @if ((await _userManager.GetUserAsync(User)).IsAdmin)
+    {
+        <a asp-action="Settings" asp-controller="Organisation">Изменить</a>
+    }
+    
 <table class="divide-y divide-gray-300 bg-blue-500" >
     <thead>
     <tr>

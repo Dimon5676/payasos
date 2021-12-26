@@ -54,6 +54,7 @@ public class UserService
         };
         var result = await _userManager.CreateAsync(user, viewModel.Password);
         if (!result.Succeeded) throw new Exception(String.Join(", ", result.Errors.Select(e => e.Description)));
+        await _signInManager.SignInAsync(user, isPersistent: true);
         return user;
     }
     
@@ -78,6 +79,7 @@ public class UserService
         };
         var result = await _userManager.CreateAsync(user, viewModel.Password);
         if (!result.Succeeded) throw new Exception(String.Join(", ", result.Errors.Select(e => e.Description)));
+        await _signInManager.SignInAsync(user, isPersistent: true);
         return user.Organization;
     }
 

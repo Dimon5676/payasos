@@ -67,7 +67,8 @@ public class UserController : Controller
         catch (Exception e)
         {
             Console.WriteLine(e);
-            return Problem(e.Message);
+            ModelState.AddModelError("", e.Message);
+            return View("RegisterUser");
         }
     }
     
@@ -84,7 +85,8 @@ public class UserController : Controller
         catch (Exception e)
         {
             Console.WriteLine(e);
-            return Problem(e.Message);
+            ModelState.AddModelError("", e.Message);
+            return View("RegisterOrganisation");
         }
     }
 }

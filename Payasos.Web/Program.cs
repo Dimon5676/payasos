@@ -22,15 +22,12 @@ if (string.IsNullOrEmpty(envVar))
 else
 {
     //parse database URL. Format is postgres://<username>:<password>@<host>/<dbname>
-    var uri = new Uri(envVar);
+    var uri = new Uri(envVar ?? String.Empty);
+    var db = uri.LocalPath.TrimStart('/');
+    var userInfo = uri.UserInfo.Split(':', StringSplitOptions.RemoveEmptyEntries);
     var username = uri.UserInfo.Split(':')[0];
     var password = uri.UserInfo.Split(':')[1];
-    connectionString =
-        "; Database=" + uri.AbsolutePath.Substring(1) +
-        "; Username=" + username +
-        "; Password=" + password +
-        "; Port=" + uri.Port +
-        "; SSL Mode=Require; Trust Server Certificate=true;";
+    connectionString = $"User ID={userInfo[0]};Password={userInfo[1]};Host={uri.Host};Port={uri.Port};Database={db};Pooling=true;SSL Mode=Require;Trust Server Certificate=True;";
 }
 
 builder.Services.AddDbContext<AppDbContext>(opt =>

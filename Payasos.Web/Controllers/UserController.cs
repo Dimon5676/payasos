@@ -60,7 +60,7 @@ public class UserController : Controller
         if (!ModelState.IsValid) return View("RegisterUser");
         try
         {
-            var user = await _userService.RegisterUser(viewModel);
+            await _userService.RegisterUser(viewModel);
             return RedirectToAction("Index", "Home");
         }
         catch (Exception e)
@@ -77,7 +77,7 @@ public class UserController : Controller
         if (!ModelState.IsValid) return View("RegisterOrganisation");
         try
         {
-            var org = await _userService.RegisterOrganisation(viewModel);
+            await _userService.RegisterOrganisation(viewModel);
             return RedirectToAction("Index", "Home");
         }
         catch (Exception e)

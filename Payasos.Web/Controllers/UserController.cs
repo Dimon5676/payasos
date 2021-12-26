@@ -58,9 +58,11 @@ public class UserController : Controller
     public async Task<IActionResult> RegisterUserPost(RegisterUserViewModel viewModel)
     {
         if (!ModelState.IsValid) return View("RegisterUser");
-            try
+        try
         {
-            return Ok(await _userService.RegisterUser(viewModel));
+            var user = await _userService.RegisterUser(viewModel);
+            if (user != null) RedirectToAction("Index", "Home");
+            return View("RegisterUser");
         }
         catch (Exception e)
         {
@@ -75,7 +77,9 @@ public class UserController : Controller
         if (!ModelState.IsValid) return View("RegisterOrganisation");
         try
         {
-            return Ok(await _userService.RegisterOrganisation(viewModel));
+            var org = await _userService.RegisterOrganisation(viewModel);
+            if (org != null) return RedirectToAction("Index", "Home");
+            return View("RegisterOrganisation");
         }
         catch (Exception e)
         {

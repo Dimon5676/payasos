@@ -19,6 +19,7 @@
             <input asp-for="Password" type="password" class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Пароль">
             <span asp-validation-for="Password" class="text-red-500"></span>
         </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div>
             <input id="reg_btn" type="submit" class="py-1 px-4 w-full rounded-md bg-sky-600 text-neutral-800" value="Войти">
         </div>

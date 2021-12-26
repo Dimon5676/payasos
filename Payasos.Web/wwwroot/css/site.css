@@ -7,6 +7,21 @@ html {
     font-size: 16px;
   }
 }
+.header__container{
+ position: relative; 
+}
+.header__logo{
+  position: absolute;
+  height: 80px;
+  
+}
+
+.header__logo img{
+  height: 80px;
+}
+.navbar_btn{
+  height: 80px;
+}
 body {
   margin-bottom: 60px;
 }

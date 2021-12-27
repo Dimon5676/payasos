@@ -1,12 +1,11 @@
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Payasos.Core.Entities;
 using Payasos.Core.Services;
 using Payasos.Core.ViewModels;
 
 namespace Payasos.Controllers;
 
+[Authorize]
 public class PromotionController : Controller
 {
     private readonly PromotionService _promotionService;
@@ -55,5 +54,19 @@ public class PromotionController : Controller
         
         _promotionService.AddRequest(viewModel, User);
         return RedirectToAction("Organisation", "Lk");
+    }
+
+    [HttpGet]
+    public IActionResult Requests()
+    {
+        return View(_promotionService.GetRequests());
+    }
+
+    [HttpGet]
+    public IActionResult SeeRequest(int id)
+    {
+        var request = _promotionService.GetRequestById(id);
+        if (request == null) return RedirectToAction("Organisation", "Lk");
+        return View("Request",request);
     }
 }

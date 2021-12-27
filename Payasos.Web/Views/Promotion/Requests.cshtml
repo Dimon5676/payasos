@@ -1,0 +1,14 @@
+@model ICollection<Payasos.Core.Entities.PromotionRequest>
+
+@{
+    ViewData["Title"] = "Запросы на повышение";
+}
+
+<h1>Заявки на повышение</h1>
+@foreach (var request in Model)
+{
+    <div style="border: 1px black solid">
+        <a href="#">@request.User.LastNameInitials</a>
+        <h4>@(request.User.Role?.Name ?? "не указано") ==> @(request.RoleWanted.Name)</h4>
+    </div>
+}

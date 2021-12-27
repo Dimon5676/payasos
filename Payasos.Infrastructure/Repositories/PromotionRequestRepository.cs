@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Payasos.Core.Entities;
 using Payasos.Core.Repositories;
 
@@ -16,5 +17,25 @@ public class PromotionRequestRepository : IPromotionRequestRepository
     {
         _context.PromotionRequests.Add(request);
         _context.SaveChanges();
+    }
+
+    public ICollection<PromotionRequest> GetRequests()
+    {
+        return _context.PromotionRequests
+            .Include(e => e.User)
+            .ThenInclude(e => e.Role)
+            .Include(e => e.RoleWanted)
+            .ToList();
+    }
+
+    public PromotionRequest GetRequestById(int id)
+    {
+        return _context.PromotionRequests
+            .Include(e => e.User)
+            .ThenInclude(e => e.Role)
+            .Include(e => e.HardSkillsExpert)
+            .Include(e => e.SoftSkillsExpert)
+            .Include(e => e.EnglishExpert)
+            .FirstOrDefault(e => e.Id == id);
     }
 }

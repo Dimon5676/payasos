@@ -31,6 +31,16 @@ public class PromotionService
             .Where(e => e.Organization.Id == org.Id).ToList();
     }
 
+    public PromotionRequest GetRequestById(int id)
+    {
+        return _promotionRequestRepository.GetRequestById(id);
+    }
+    
+    public ICollection<PromotionRequest> GetRequests()
+    {
+        return _promotionRequestRepository.GetRequests();
+    }
+
     public async Task AddRequest(PromotionRequestViewModel viewModel, ClaimsPrincipal claims)
     {
         var user = await _userManager.GetUserAsync(claims);

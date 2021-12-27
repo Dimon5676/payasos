@@ -97,10 +97,12 @@ public class UserService
             .FirstOrDefault(e => e.UserName == claims.Identity.Name);
         return _userManager.Users
             .Include(x => x.Organization)
+            .Include(x => x.Role)
             .Where(x => x.Organization == user.Organization)
             .Select(e => new UserViewModel
         {
             Email = e.Email,
+            Role = e.Role.Name,
             FirstName = e.FirstName,
             LastName = e.LastName,
             SecondName = e.SecondName,

@@ -1,7 +1,43 @@
-@model Payasos.Core.ViewModels.OrganisationSettingsViewModel
+@model Payasos.Core.ViewModels.PromotionRequestViewModel
 
 @{
     ViewData["Title"] = "Настройки организации";
 }
 
-<h1>Тут типа заявка на повышение</h1>
+<h1>Сделайте заявку на повышение</h1>
+<form asp-action="AddRequest" method="post">
+    <div class="my-6">
+        <label class="text-lg">Экзаментаор hard skills</label>
+        <select
+            asp-for="HardSkillsExpert.Id"
+            asp-items="@(new SelectList(Model.Users, "Id", "LastNameInitials"))" style="width: 210px; padding-left: 5px; height: 35px " class="mx-20  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
+        <span asp-validation-for="HardSkillsExpert" class="text-red-500"></span>
+    </div>
+    <div class="my-6">
+        <label class="text-lg">Экзаментаор soft skills</label>
+        <select
+            asp-for="SoftSkillsExpert.Id"
+            asp-items="@(new SelectList(Model.Users, "Id", "LastNameInitials"))" style="width: 210px; padding-left: 5px; height: 35px " class="mx-20  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
+        <span asp-validation-for="SoftSkillsExpert" class="text-red-500"></span>
+    </div>
+    <div class="my-6">
+        <label class="text-lg">Экзаментаор английский язык</label>
+        <select
+            asp-for="EnglishExpert.Id"
+            asp-items="@(new SelectList(Model.Users, "Id", "LastNameInitials"))" style="width: 210px; padding-left: 5px; height: 35px " class="mx-20  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
+        <span asp-validation-for="EnglishExpert" class="text-red-500"></span>
+    </div>
+    <div class="my-6">
+            <label class="text-lg">Желаемая роль</label>
+            <select
+                asp-for="RoleWanted.Id"
+                asp-items="@(new SelectList(Model.Roles, "Id", "Name"))" style="width: 210px; padding-left: 5px; height: 35px " class="mx-20  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
+            <span asp-validation-for="RoleWanted" class="text-red-500"></span>
+        </div>
+    <div class="my-6">
+        <label class="text-lg">Дата собеседования</label>
+        <input type="date" asp-for="InterviewDate">
+        <span asp-validation-for="InterviewDate" class="text-red-500"></span>
+    </div>
+    <input type="submit">
+</form>

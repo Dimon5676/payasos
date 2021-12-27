@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Payasos.Infrastructure;
@@ -11,9 +12,10 @@ using Payasos.Infrastructure;
 namespace Payasos.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211227214849_Promotions")]
+    partial class Promotions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -285,16 +287,10 @@ namespace Payasos.Infrastructure.Migrations
                     b.Property<DateTime>("InterviewDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("RoleWantedId")
-                        .HasColumnType("integer");
-
                     b.Property<bool>("SoftSkillPass")
                         .HasColumnType("boolean");
 
                     b.Property<string>("SoftSkillsExpertId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserId")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -303,11 +299,7 @@ namespace Payasos.Infrastructure.Migrations
 
                     b.HasIndex("HardSkillsExpertId");
 
-                    b.HasIndex("RoleWantedId");
-
                     b.HasIndex("SoftSkillsExpertId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("PromotionRequests");
                 });
@@ -409,27 +401,15 @@ namespace Payasos.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("HardSkillsExpertId");
 
-                    b.HasOne("Payasos.Core.Entities.Role", "RoleWanted")
-                        .WithMany()
-                        .HasForeignKey("RoleWantedId");
-
                     b.HasOne("Payasos.Core.Entities.AppUser", "SoftSkillsExpert")
                         .WithMany()
                         .HasForeignKey("SoftSkillsExpertId");
-
-                    b.HasOne("Payasos.Core.Entities.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
 
                     b.Navigation("EnglishExpert");
 
                     b.Navigation("HardSkillsExpert");
 
-                    b.Navigation("RoleWanted");
-
                     b.Navigation("SoftSkillsExpert");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Payasos.Core.Entities.Role", b =>

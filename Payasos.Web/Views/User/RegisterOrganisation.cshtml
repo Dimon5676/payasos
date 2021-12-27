@@ -14,7 +14,11 @@
             <input asp-for="OrganisationName" type="text" class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Название огранизации">
             <span asp-validation-for="OrganisationName" class="text-red-500"></span>
         </div>
-        
+        <div>
+            <label>Роль по умолчанию (для всех сотрудников)</label>
+            <input asp-for="DefaultRole" type="text" class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Стандартная роль">
+            <span asp-validation-for="DefaultRole" class="text-red-500"></span>
+        </div>
         <div>
             <label>Фамилия</label>
             <input asp-for="LastName" type="text" class="border border-green-500 py-1 px-4 w-full rounded-md" placeholder="Фамилия">

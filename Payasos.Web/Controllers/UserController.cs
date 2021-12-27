@@ -48,7 +48,7 @@ public class UserController : Controller
     {
         if (!ModelState.IsValid) return View("Login", model);
         var result = await _userService.Login(model);
-        if (result) return RedirectToAction("Index", "Home");
+        if (result) return RedirectToAction("Organisation", "Lk");
         ModelState.AddModelError("", "Неверный логин или пароль");
         return View("Login", model);
     }
@@ -61,7 +61,7 @@ public class UserController : Controller
         try
         {
             await _userService.RegisterUser(viewModel);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Organisation", "Lk");
         }
         catch (Exception e)
         {
@@ -78,7 +78,7 @@ public class UserController : Controller
         try
         {
             await _userService.RegisterOrganisation(viewModel);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Organisation", "Lk");
         }
         catch (Exception e)
         {

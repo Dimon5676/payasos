@@ -51,8 +51,8 @@ public class OrganisationService
         }
         else
         {
-            if (org.Roles.FirstOrDefault(newRole) != null) throw new Exception("Роль уже существует");
-            org.Roles.Append(newRole);
+            if (org.Roles.FirstOrDefault(e => e.Name == role) != null) throw new Exception("Роль уже существует");
+            org.Roles.Add(newRole);
         }
         
         _organisationRepository.SaveChanges();

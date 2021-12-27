@@ -16,8 +16,6 @@ public class OrganisationSettingsViewModel
     public string InviteCode { get; set; }
     
     [Required(ErrorMessage = "У организации должна быть стандартная роль")]
-    public int DefaultRoleId { get; set; }
-    
     public Role SelectedRole { get; set; }
     public IEnumerable<Role> Roles { get; set; }
 }

@@ -25,12 +25,12 @@ public class OrganisationController : Controller
     public IActionResult Settings()
     {
         var org = _organisationService.GetUserOrganisation(User);
-        ViewBag.Roles = org.Roles;
         return View(new OrganisationSettingsViewModel
         {
             OrgName = org.Name,
             InviteCode = org.Code,
-            Roles = org.Roles?.Select(e => e.Name)
+            Roles = org.Roles,
+            SelectedRole = org.Roles.FirstOrDefault(e => e.Id == org.DefaultRoleId)
         });
     }
 
@@ -54,7 +54,8 @@ public class OrganisationController : Controller
             {
                 OrgName = org.Name,
                 InviteCode = org.Code,
-                Roles = org.Roles?.Select(e => e.Name)
+                Roles = org.Roles,
+                SelectedRole = org.Roles.FirstOrDefault(e => e.Id == org.DefaultRoleId)
             });
         }
 
@@ -70,7 +71,8 @@ public class OrganisationController : Controller
             {
                 OrgName = org.Name,
                 InviteCode = org.Code,
-                Roles = org.Roles?.Select(e => e.Name)
+                Roles = org.Roles,
+                SelectedRole = org.Roles.FirstOrDefault(e => e.Id == org.DefaultRoleId)
             });
         }
         return RedirectToAction("Settings");

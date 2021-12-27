@@ -1,3 +1,4 @@
+@using Payasos.Core.Entities
 @model Payasos.Core.ViewModels.OrganisationSettingsViewModel
 
 @{
@@ -18,9 +19,9 @@
     <div class="my-6">
         <label class="text-lg">Стандартная роль</label>
         <select
-            asp-for="DefaultRoleId"
-            asp-items="@(new SelectList(ViewBag.Roles, "Id", "Name"))" style="width: 210px; padding-left: 5px; height: 35px " class="mx-20  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
-        <span asp-validation-for="DefaultRoleId" class="text-red-500"></span>
+            asp-for="SelectedRole.Id"
+            asp-items="@(new SelectList(Model.Roles, "Id", "Name"))" style="width: 210px; padding-left: 5px; height: 35px " class="mx-20  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
+        <span asp-validation-for="SelectedRole" class="text-red-500"></span>
     </div>
     <input type="submit" value="Применить" style="width: 230px; height: 40px" class="border border-green-600 text-black hover:bg-green-600 hover:text-white rounded-md text-center text-lg">
 </form>
@@ -42,7 +43,7 @@
         @foreach (var role in Model.Roles)
         {
             <tr class="mt-3 text-base text-center text-black text-lg">
-                <td>@role</td>
+                <td>@role.Name</td>
             </tr>
         }
         </tbody>

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Payasos.Core.Entities;
 
 namespace Payasos.Core.ViewModels;
 
@@ -16,5 +17,7 @@ public class OrganisationSettingsViewModel
     
     [Required(ErrorMessage = "У организации должна быть стандартная роль")]
     public int DefaultRoleId { get; set; }
-    public IEnumerable<string> Roles { get; set; }
+    
+    public Role SelectedRole { get; set; }
+    public IEnumerable<Role> Roles { get; set; }
 }

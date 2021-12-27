@@ -37,7 +37,14 @@ public class OrganisationController : Controller
     [HttpPost]
     public IActionResult ChangeInfo(OrganisationSettingsViewModel viewModel)
     {
-        if (!ModelState.IsValid) return View("Settings");
+        var org = _organisationService.GetUserOrganisation(User);
+        if (!ModelState.IsValid) return View("Settings", new OrganisationSettingsViewModel
+        {
+            OrgName = org.Name,
+            InviteCode = org.Code,
+            Roles = org.Roles,
+            SelectedRole = org.Roles.FirstOrDefault(e => e.Id == org.DefaultRoleId)
+        });
         _organisationService.ChangeUserOrganisationInfo(User, viewModel);
         return RedirectToAction("Organisation", "Lk");
     }

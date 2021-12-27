@@ -51,7 +51,7 @@ public class UserService
             IsAdmin = false,
             UserName = viewModel.Email,
             Organization = org,
-            Role = org.DefaultRole
+            Role = org.Roles.FirstOrDefault(e => e.Id == org.DefaultRoleId)
         };
         var result = await _userManager.CreateAsync(user, viewModel.Password);
         if (!result.Succeeded) throw new Exception(String.Join(", ", result.Errors.Select(e => e.Description)));
@@ -77,12 +77,14 @@ public class UserService
             {
                 Name = viewModel.OrganisationName,
                 Roles = new []{ defaultRole },
-                DefaultRole = defaultRole,
                 Code = "" + (char)rand.Next('A', 'Z') + rand.Next(0, 10) + (char)rand.Next('A', 'Z') + rand.Next(0, 10)
             } 
         };
         var result = await _userManager.CreateAsync(user, viewModel.Password);
         if (!result.Succeeded) throw new Exception(String.Join(", ", result.Errors.Select(e => e.Description)));
+        user.Organization.DefaultRoleId = user.Organization.Roles.FirstOrDefault(e => e.Name == defaultRole.Name).Id;
+        user.Role = user.Organization.Roles.FirstOrDefault(e => e.Id == user.Organization.DefaultRoleId); 
+        _organisationRepository.SaveChanges();
         await _signInManager.SignInAsync(user, isPersistent: true);
         return user.Organization;
     }

@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Payasos.Core.Entities;
 using Payasos.Core.Repositories;
 
@@ -20,12 +21,16 @@ public class OrganisationRepository : IOrganisationRepository
 
     public Organization GetOrganisationByCode(string code)
     {
-        return _context.Organizations.FirstOrDefault(o => o.Code == code);
+        return _context.Organizations
+            .Include(o => o.Roles)
+            .FirstOrDefault(o => o.Code == code);
     }
 
     public Organization GetOrganisationByName(string name)
     {
-        return _context.Organizations.FirstOrDefault(o => o.Name == name);
+        return _context.Organizations
+            .Include(o => o.Roles)
+            .FirstOrDefault(o => o.Name == name);
     }
 
     public void SaveChanges()

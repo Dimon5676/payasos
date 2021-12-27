@@ -8,7 +8,6 @@ public class Organization
     public string Name { get; set; }
     public string Code { get; set; }
     
-    [NotMapped]
-    public Role DefaultRole { get; set; }
+    public int DefaultRoleId { get; set; }
     public ICollection<Role> Roles { get; set; }
 }

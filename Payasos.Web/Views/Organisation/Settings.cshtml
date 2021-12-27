@@ -15,6 +15,13 @@
         <input type="text" asp-for="InviteCode" style="padding-left: 3px" class="mx-12 border border-neutral-800 rounded-md text-center text-lg" placeholder="Пригласительный код">
         <span asp-validation-for="InviteCode" class="text-red-500 mx-5"></span>
     </div>
+    <div>
+        <label>Стандартная роль</label>
+        <select
+            asp-for="DefaultRoleId"
+            asp-items="@(new SelectList(ViewBag.Roles, "Id", "Name"))"></select>
+        <span asp-validation-for="DefaultRoleId" class="text-red-500"></span>
+    </div>
     <input type="submit" value="Изменить" style="width: 230px; height: 40px" class="border border-green-600 text-black hover:bg-green-600 hover:text-white rounded-md text-center text-lg">
 </form>
 <form asp-action="AddRole" method="post" class="my-5 mx-6">

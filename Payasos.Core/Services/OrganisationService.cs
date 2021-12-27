@@ -34,6 +34,7 @@ public class OrganisationService
         var org = GetUserOrganisation(claims);
         org.Name = viewModel.OrgName;
         org.Code = viewModel.InviteCode;
+        org.DefaultRole = org.Roles.FirstOrDefault(e => e.Id == viewModel.DefaultRoleId);
         _organisationRepository.SaveChanges();
     }
 

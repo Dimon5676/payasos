@@ -13,5 +13,8 @@ public class OrganisationSettingsViewModel
     [MinLength(4, ErrorMessage = "Пригласительный код не может быть меньше 4х символов")]
     [MaxLength(5, ErrorMessage = "Пригласительный код не может быть больше 5и символов")]
     public string InviteCode { get; set; }
+    
+    [Required(ErrorMessage = "У организации должна быть стандартная роль")]
+    public int DefaultRoleId { get; set; }
     public IEnumerable<string> Roles { get; set; }
 }

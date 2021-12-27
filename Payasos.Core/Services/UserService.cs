@@ -50,7 +50,8 @@ public class UserService
             Email = viewModel.Email,
             IsAdmin = false,
             UserName = viewModel.Email,
-            Organization = org
+            Organization = org,
+            Role = org.DefaultRole
         };
         var result = await _userManager.CreateAsync(user, viewModel.Password);
         if (!result.Succeeded) throw new Exception(String.Join(", ", result.Errors.Select(e => e.Description)));
@@ -63,6 +64,7 @@ public class UserService
         var rand = new Random();
         var o = _organisationRepository.GetOrganisationByName(viewModel.OrganisationName);
         if (o != null) throw new Exception("Организация с таким именем уже существует");
+        var defaultRole = new Role { Name = viewModel.DefaultRole };
         var user = new AppUser
         {
             FirstName = viewModel.FirstName,
@@ -74,7 +76,8 @@ public class UserService
             Organization = new Organization
             {
                 Name = viewModel.OrganisationName,
-                Roles = new List<Role>(),
+                Roles = new []{ defaultRole },
+                DefaultRole = defaultRole,
                 Code = "" + (char)rand.Next('A', 'Z') + rand.Next(0, 10) + (char)rand.Next('A', 'Z') + rand.Next(0, 10)
             } 
         };

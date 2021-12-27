@@ -24,7 +24,8 @@ public class OrganisationController : Controller
     [HttpGet]
     public IActionResult Settings()
     {
-        var org = _organisationService.GetUserOrganisation(User);   
+        var org = _organisationService.GetUserOrganisation(User);
+        ViewBag.Roles = org.Roles;
         return View(new OrganisationSettingsViewModel
         {
             OrgName = org.Name,
@@ -48,6 +49,7 @@ public class OrganisationController : Controller
         if (role == null || role.Length > 20 || role.Length < 3)
         {
             ModelState.AddModelError("", "Название роли должно быть в пределах от 3 до 20 символов");
+            ViewBag.Roles = org.Roles;
             return View("Settings", new OrganisationSettingsViewModel
             {
                 OrgName = org.Name,
@@ -63,6 +65,7 @@ public class OrganisationController : Controller
         catch (Exception e)
         {
             ModelState.AddModelError("", e.Message);
+            ViewBag.Roles = org.Roles;
             return View("Settings", new OrganisationSettingsViewModel
             {
                 OrgName = org.Name,

@@ -19,7 +19,7 @@
         <label class="text-lg">Стандартная роль</label>
         <select
             asp-for="DefaultRoleId"
-            asp-items="@(new SelectList(ViewBag.Roles, "Id", "Name"))" style="width: 210px; padding-left: 5px; height: 35px " class="mx-20  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-white hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
+            asp-items="@(new SelectList(ViewBag.Roles, "Id", "Name"))" style="width: 210px; padding-left: 5px; height: 35px " class="mx-20  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
         <span asp-validation-for="DefaultRoleId" class="text-red-500"></span>
     </div>
     <input type="submit" value="Применить" style="width: 230px; height: 40px" class="border border-green-600 text-black hover:bg-green-600 hover:text-white rounded-md text-center text-lg">

@@ -69,4 +69,22 @@ public class PromotionController : Controller
         if (request == null) return RedirectToAction("Organisation", "Lk");
         return View("Request",request);
     }
+
+    [HttpPost]
+    public IActionResult AddMark(bool passed, int requestId)
+    {
+        var request = _promotionService.GetRequestById(requestId);
+        if (request == null) return RedirectToAction("Organisation", "Lk");
+        _promotionService.AddMark(User, passed, requestId);
+        return RedirectToAction("SeeRequest", new {id = requestId});
+    }
+    
+    [HttpPost]
+    public IActionResult CloseRequest(int requestId)
+    {
+        var request = _promotionService.GetRequestById(requestId);
+        if (request == null) return RedirectToAction("Organisation", "Lk");
+        _promotionService.CloseRequest(User, requestId);
+        return RedirectToAction("Requests");
+    }
 }

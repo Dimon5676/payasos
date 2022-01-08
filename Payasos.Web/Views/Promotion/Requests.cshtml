@@ -7,8 +7,8 @@
 <h1>Заявки на повышение</h1>
 @foreach (var request in Model)
 {
-    <div style="border: 1px black solid">
-        <a href="#">@request.User.LastNameInitials</a>
+    <div style="border-top: 1px black solid">
+        <a asp-action="SeeRequest" asp-route-id="@request.Id">@request.User.LastNameInitials</a>
         <h4>@(request.User.Role?.Name ?? "не указано") ==> @(request.RoleWanted.Name)</h4>
     </div>
 }

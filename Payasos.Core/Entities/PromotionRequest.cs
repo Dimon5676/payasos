@@ -12,5 +12,7 @@ public class PromotionRequest
     public bool HardSkillPass { get; set; }
     public bool SoftSkillPass { get; set; }
     public bool EnglishPass { get; set; }
+    
+    public bool IsClosed { get; set; }
     public DateTime InterviewDate { get; set; }
 }

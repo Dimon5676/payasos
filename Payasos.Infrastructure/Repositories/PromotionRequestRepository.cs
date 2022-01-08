@@ -25,6 +25,7 @@ public class PromotionRequestRepository : IPromotionRequestRepository
             .Include(e => e.User)
             .ThenInclude(e => e.Role)
             .Include(e => e.RoleWanted)
+            .Where(e => e.IsClosed == false)
             .ToList();
     }
 
@@ -32,10 +33,16 @@ public class PromotionRequestRepository : IPromotionRequestRepository
     {
         return _context.PromotionRequests
             .Include(e => e.User)
-            .ThenInclude(e => e.Role)
+                .ThenInclude(e => e.Role)
             .Include(e => e.HardSkillsExpert)
             .Include(e => e.SoftSkillsExpert)
             .Include(e => e.EnglishExpert)
+            .Include(e => e.RoleWanted)
             .FirstOrDefault(e => e.Id == id);
+    }
+
+    public async Task SaveChanges()
+    {
+        await _context.SaveChangesAsync();
     }
 }

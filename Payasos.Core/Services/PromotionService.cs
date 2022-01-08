@@ -56,7 +56,34 @@ public class PromotionService
                 HardSkillPass = false,
                 SoftSkillPass = false,
                 EnglishPass = false,
+                IsClosed = false,
                 User = user
             });
+    }
+
+    public async Task AddMark(ClaimsPrincipal claims, bool passed, int requestId)
+    {
+        var req = _promotionRequestRepository.GetRequestById(requestId);
+        var user = await _userManager.GetUserAsync(claims);
+        if (req.HardSkillsExpert == user) req.HardSkillPass = passed;
+        if (req.SoftSkillsExpert == user) req.SoftSkillPass = passed;
+        if (req.EnglishExpert == user) req.EnglishPass = passed;
+        if (req.EnglishPass && req.HardSkillPass && req.SoftSkillPass)
+        {
+            req.User.Role = req.RoleWanted;
+            req.IsClosed = true;
+        }
+        await _promotionRequestRepository.SaveChanges();
+    }
+    
+    public async Task CloseRequest(ClaimsPrincipal claims, int requestId)
+    {
+        var req = _promotionRequestRepository.GetRequestById(requestId);
+        var user = await _userManager.GetUserAsync(claims);
+        if (!user.IsAdmin) return;
+
+        req.IsClosed = true;
+        
+        await _promotionRequestRepository.SaveChanges();
     }
 }

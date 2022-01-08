@@ -1,8 +1,38 @@
+@inject UserManager<AppUser> _userManager
+@using Microsoft.AspNetCore.Identity
+@using Payasos.Core.Entities
 @model Payasos.Core.Entities.PromotionRequest
 
 @{
     ViewData["Title"] = $"Запрос №{Model.Id}";
 }
 
-<h1>Пока не готов</h1>
-<p>На этой странице сотрудник может посмотреть результат, а экзаменатор выставить оценку</p>
+<h1>Запрос на повышение для @Model.User.LastNameInitials</h1>
+<p>Hard skills expert @Model.HardSkillsExpert.LastNameInitials</p>
+<p>Soft skills expert @Model.SoftSkillsExpert.LastNameInitials</p>
+<p>English expert @Model.EnglishExpert.LastNameInitials</p>
+<p>Дата собеседования: @Model.InterviewDate</p>
+<br>
+<h3>Результаты:</h3>
+<p>Hard skills <input type="checkbox" checked="@Model.HardSkillPass" disabled="disabled"></p>
+<p>Soft skills <input type="checkbox" checked="@Model.SoftSkillPass" disabled="disabled"></p>
+<p>English <input type="checkbox" checked="@Model.EnglishPass" disabled="disabled"></p>
+
+@{ var user = await _userManager.GetUserAsync(User);}
+@if (user == Model.HardSkillsExpert || user == Model.SoftSkillsExpert || user == Model.EnglishExpert)
+{
+    <form asp-action="AddMark" method="post">
+        <p>Ваша оценка</p>
+        <input id="requestId" name="requestId" value="@Model.Id" hidden="hidden">
+        <input type="checkbox" name="passed" value="true">
+        <input type="submit" value="Подтвердить оценку">
+    </form>
+}
+
+@if (user.IsAdmin)
+{
+    <form asp-action="CloseRequest" method="post">
+        <input id="requestId" name="requestId" value="@Model.Id" hidden="hidden">
+        <input type="submit" value="Закрыть запрос">
+    </form>
+}

@@ -14,8 +14,11 @@
     {
         <a asp-action="Settings" asp-controller="Organisation" style="width: 230px; height: 30px" class=" my-5 border border-green-400 text-black hover:bg-green-600 hover:text-white rounded-md text-center text-lg">Изменить</a>
     }
-    
-<table class=" mx-3 divide-y divide-gray-300" >
+    <div style="height: 100px">
+    <a asp-action="Ask" asp-controller="Promotion" style="width: 230px; height: 60px" class=" my-5 border border-blue-600 text-black hover:bg-blue-600 hover:text-white rounded-md text-center text-lg">Запросить повышение</a>    
+    <a asp-action="Requests" asp-controller="Promotion" style="width: 230px; height: 60px" class=" my-5  mx-10 border border-blue-600 text-black hover:bg-blue-600 hover:text-white rounded-md text-center text-lg">Запросы на повышение</a>    
+</div>
+<table class="my-10 mx-3 divide-y divide-gray-300" >
     <thead class="mt-5 ">
     <tr>
         <td class="text-center py-2 bg-neutral-700 text-base text-white">Имя</td>

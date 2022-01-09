@@ -58,7 +58,11 @@ builder.Services.ConfigureApplicationCookie(opt =>
 
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<OrganisationService>();
+builder.Services.AddScoped<PromotionService>();
 builder.Services.AddScoped<IOrganisationRepository, OrganisationRepository>();
+builder.Services.AddScoped<IPromotionRequestRepository, PromotionRequestRepository>();
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var serviceProvider = builder.Services.BuildServiceProvider();
 try

@@ -1,0 +1,15 @@
+@model ICollection<Payasos.Core.Entities.PromotionRequest>
+
+@{
+    ViewData["Title"] = "Запросы на повышение";
+}
+
+<h1 class="mx-16 text-xl my-5">Заявки на повышение</h1>
+@foreach (var request in Model)
+{
+    <div style="border-top: 1px black solid" class="py-2 text-lg hover:bg-green-300">
+        <a class="mx-10 mt-3 " asp-action="SeeRequest" asp-route-id="@request.Id">@request.User.LastNameInitials</a>
+        <h4 class="mx-10">@(request.User.Role?.Name ?? "не указано") ➟ @(request.RoleWanted.Name)</h4>
+    </div>
+}
+<h1 class="mx-5 mt-5 text-lg text-stone-400">Открытие заявки происходит по клику на фамилию сотрудника</h1>

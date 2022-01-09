@@ -1,0 +1,43 @@
+@inject UserManager<AppUser> _userManager
+@using Microsoft.AspNetCore.Identity
+@using Payasos.Core.Entities
+@model Payasos.Core.Entities.PromotionRequest
+
+@{
+    ViewData["Title"] = $"Запрос №{Model.Id}";
+}
+<div class="p-6 my-3 text-xl bg-cyan-50" >
+    <h1>Запрос на повышение для @Model.User.LastNameInitials</h1>
+    <p mb-2>Hard skills expert @Model.HardSkillsExpert.LastNameInitials</p>
+    <p mb-2>Soft skills expert @Model.SoftSkillsExpert.LastNameInitials</p>
+    <p mb-2>English expert @Model.EnglishExpert.LastNameInitials</p>
+    <p mb-2>Дата собеседования: @Model.InterviewDate</p>
+</div>
+
+<div class="p-6 my-3 text-xl bbg-cyan-50">
+    <h3>Результаты:</h3>
+    <p mb-2>Hard skills <input type="checkbox" checked="@Model.HardSkillPass" disabled="disabled" class="p-5 w-5 h-5 form-checkbox text-indigo-600 ml-2"></p>
+    <p mb-2>Soft skills <input type="checkbox" checked="@Model.SoftSkillPass"  disabled="disabled" class=" w-5 h-5 form-checkbox text-green-600 ml-2"></p>
+    <p mb-2>English <input type="checkbox" checked="@Model.EnglishPass" disabled="disabled" class=" w-5 h-5 form-checkbox text-pink-600 ml-2"></p>
+
+    @{ var user = await _userManager.GetUserAsync(User); }
+    @if (user == Model.HardSkillsExpert || user == Model.SoftSkillsExpert || user == Model.EnglishExpert)
+    {
+        <form asp-action="AddMark" method="post">
+            <p>Ваша оценка
+            <input id="requestId" name="requestId" value="@Model.Id" hidden="hidden">
+            <input type="checkbox" name="passed" value="true" class="mx-3 w-5 h-5 text-green-600 border-0 rounded-md"></p>
+        
+       
+            <input type="submit" value="Подтвердить оценку" class=" my-4 border border-green-600 text-black hover:bg-green-600 hover:text-white rounded-md text-center text-lg">
+        </form>
+    }
+
+    @if (user.IsAdmin)
+    {
+        <form asp-action="CloseRequest" method="post">
+            <input id="requestId" name="requestId" value="@Model.Id" hidden="hidden">
+            <input type="submit" value="Закрыть запрос" class="my-4 border border-black text-black hover:bg-red-600 hover:text-white rounded-md text-center text-lg">
+        </form>
+    }
+</div>

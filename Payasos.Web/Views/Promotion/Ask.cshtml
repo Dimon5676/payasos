@@ -3,41 +3,41 @@
 @{
     ViewData["Title"] = "Подать заявку";
 }
-
-<h1>Сделайте заявку на повышение</h1>
+<div class="mx-5">
+<h1 class="mx-5 p-6 text-xl">Сделайте заявку на повышение</h1>
 <form asp-action="AddRequest" method="post">
     <div class="my-6">
         <label class="text-lg">Экзаментаор hard skills</label>
         <select
             asp-for="HardSkillsExpert.Id"
-            asp-items="@(new SelectList(Model.Users, "Id", "LastNameInitials"))" style="width: 210px; padding-left: 5px; height: 35px " class="mx-20  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
+            asp-items="@(new SelectList(Model.Users, "Id", "LastNameInitials"))" style="width: 210px; height: 35px " class="mx-14  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
         <span asp-validation-for="HardSkillsExpert" class="text-red-500"></span>
     </div>
     <div class="my-6">
         <label class="text-lg">Экзаментаор soft skills</label>
         <select
             asp-for="SoftSkillsExpert.Id"
-            asp-items="@(new SelectList(Model.Users, "Id", "LastNameInitials"))" style="width: 210px; padding-left: 5px; height: 35px " class="mx-20  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
+            asp-items="@(new SelectList(Model.Users, "Id", "LastNameInitials"))" style="width: 210px; height: 35px " class="mx-16  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
         <span asp-validation-for="SoftSkillsExpert" class="text-red-500"></span>
     </div>
     <div class="my-6">
-        <label class="text-lg">Экзаментаор английский язык</label>
+        <label class="text-lg">Экзаментаор English</label>
         <select
             asp-for="EnglishExpert.Id"
-            asp-items="@(new SelectList(Model.Users, "Id", "LastNameInitials"))" style="width: 210px; padding-left: 5px; height: 35px " class="mx-20  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
+            asp-items="@(new SelectList(Model.Users, "Id", "LastNameInitials"))" style="width: 210px; height: 35px " class="mx-20  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
         <span asp-validation-for="EnglishExpert" class="text-red-500"></span>
     </div>
     <div class="my-6">
-            <label class="text-lg">Желаемая роль</label>
-            <select
-                asp-for="RoleWanted.Id"
-                asp-items="@(new SelectList(Model.Roles, "Id", "Name"))" style="width: 210px; padding-left: 5px; height: 35px " class="mx-20  divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
-            <span asp-validation-for="RoleWanted" class="text-red-500"></span>
-        </div>
-    <div class="my-6">
-        <label class="text-lg">Дата собеседования</label>
-        <input type="date" asp-for="InterviewDate">
-        <span asp-validation-for="InterviewDate" class="text-red-500"></span>
+        <label class="text-lg">Желаемая роль</label>
+        <select
+            asp-for="RoleWanted.Id"
+            asp-items="@(new SelectList(Model.Roles, "Id", "Name"))" style="width: 210px; height: 35px " class="mx-36 mr-1 divide-y divide-gray-300 hover:bg-green-500 text-lg text-center text-black hover:bg-green-600 hover:text-white  border rounded-ms border-green-700"></select>
+        <span asp-validation-for="RoleWanted" class="text-red-500"></span>
     </div>
-    <input type="submit">
+    <label class="text-xl" >Дата собеседования</label>
+        <input type="date" asp-for="InterviewDate" class="mx-14 text-lg border border-black rounded"> 
+        <span asp-validation-for="InterviewDate" class="text-red-500"></span>
+    <br/>
+    <input type="submit" style="width: 210px; height: 35px" class=" my-3 rounded hover:bg-green-500 text-lg text-center text-black hover:bg-blue-600 hover:text-white  border rounded-ms border-blue-700">
 </form>
+</div>

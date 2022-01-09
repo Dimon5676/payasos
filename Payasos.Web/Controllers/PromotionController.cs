@@ -59,7 +59,7 @@ public class PromotionController : Controller
     [HttpGet]
     public IActionResult Requests()
     {
-        return View(_promotionService.GetRequests());
+        return View( _promotionService.GetRequests(User));
     }
 
     [HttpGet]

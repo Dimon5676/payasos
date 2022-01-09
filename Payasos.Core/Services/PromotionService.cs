@@ -36,9 +36,10 @@ public class PromotionService
         return _promotionRequestRepository.GetRequestById(id);
     }
     
-    public ICollection<PromotionRequest> GetRequests()
+    public ICollection<PromotionRequest> GetRequests(ClaimsPrincipal claims)
     {
-        return _promotionRequestRepository.GetRequests();
+        var org = _organisationService.GetUserOrganisation(claims);
+        return _promotionRequestRepository.GetRequests().Where(e => e.User.Organization == org).ToList();
     }
 
     public async Task AddRequest(PromotionRequestViewModel viewModel, ClaimsPrincipal claims)

@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Payasos.Core.Entities;
 using Payasos.Core.Services;
 using Payasos.Core.ViewModels;
 
@@ -10,25 +13,32 @@ public class PromotionController : Controller
 {
     private readonly PromotionService _promotionService;
     private readonly OrganisationService _organisationService;
+    private readonly UserManager<AppUser> _userManager;
 
     public PromotionController(
         PromotionService promotionService,
-        OrganisationService organisationService)
+        OrganisationService organisationService,
+        UserManager<AppUser> userManager)
     {
         _promotionService = promotionService;
         _organisationService = organisationService;
+        _userManager = userManager;
     }
     
     [HttpGet]
     public IActionResult Ask()
     {
-        var users = _promotionService.GetUserFromOrganisation(User);
+        var user = _userManager.Users
+            .Include(x => x.Role)
+            .FirstOrDefault(e => e.UserName == User.Identity.Name);
+        var users = _promotionService.GetUserFromOrganisation(User).Where(e => e != user).ToList();
         var org = _organisationService.GetUserOrganisation(User);
+        var roles = org.Roles.Where(e => e != user.Role).ToList();
         return View(new PromotionRequestViewModel
         {
             Users = users,
-            RoleWanted = org.Roles.First(),
-            Roles = org.Roles,
+            RoleWanted = roles.First(),
+            Roles = roles,
             HardSkillsExpert = users.First(),
             SoftSkillsExpert = users.First(),
             EnglishExpert = users.First(),

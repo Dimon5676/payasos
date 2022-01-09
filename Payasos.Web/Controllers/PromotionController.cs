@@ -32,6 +32,7 @@ public class PromotionController : Controller
             .Include(x => x.Role)
             .FirstOrDefault(e => e.UserName == User.Identity.Name);
         var users = _promotionService.GetUserFromOrganisation(User).Where(e => e != user).ToList();
+        if (users.Count < 2) return RedirectToAction("Organisation", "Lk");
         var org = _organisationService.GetUserOrganisation(User);
         var roles = org.Roles.Where(e => e != user.Role).ToList();
         return View(new PromotionRequestViewModel
@@ -51,7 +52,7 @@ public class PromotionController : Controller
     {
         var users = _promotionService.GetUserFromOrganisation(User);
         var org = _organisationService.GetUserOrganisation(User);
-        if (!ModelState.IsValid) return View("Ask", new PromotionRequestViewModel
+        if (!ModelState.IsValid || users.Count < 2) return View("Ask", new PromotionRequestViewModel
         {
             Users = users,
             RoleWanted = org.Roles.First(),

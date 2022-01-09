@@ -51,7 +51,7 @@ public class PromotionController : Controller
     {
         var users = _promotionService.GetUserFromOrganisation(User);
         var org = _organisationService.GetUserOrganisation(User);
-        if (!ModelState.IsValid) return View("Ask", new PromotionRequestViewModel
+        if (!ModelState.IsValid || users.Count < 2) return View("Ask", new PromotionRequestViewModel
         {
             Users = users,
             RoleWanted = org.Roles.First(),

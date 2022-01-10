@@ -24,7 +24,9 @@ public class PromotionRequestRepository : IPromotionRequestRepository
         return _context.PromotionRequests
             .Include(e => e.User)
             .ThenInclude(e => e.Role)
+            .AsSplitQuery()
             .Include(e => e.RoleWanted)
+            .AsSplitQuery()
             .Where(e => e.IsClosed == false)
             .ToList();
     }
@@ -34,9 +36,13 @@ public class PromotionRequestRepository : IPromotionRequestRepository
         return _context.PromotionRequests
             .Include(e => e.User)
                 .ThenInclude(e => e.Role)
+            .AsSplitQuery()
             .Include(e => e.HardSkillsExpert)
+            .AsSplitQuery()
             .Include(e => e.SoftSkillsExpert)
+            .AsSplitQuery()
             .Include(e => e.EnglishExpert)
+            .AsSplitQuery()
             .Include(e => e.RoleWanted)
             .FirstOrDefault(e => e.Id == id);
     }

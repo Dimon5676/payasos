@@ -32,7 +32,7 @@ public class PromotionController : Controller
             .Include(x => x.Role)
             .FirstOrDefault(e => e.UserName == User.Identity.Name);
         var users = _promotionService.GetUserFromOrganisation(User).Where(e => e != user).ToList();
-        if (users.Count < 2) return RedirectToAction("Organisation", "Lk");
+        if (users.Count + 1 < 2) return RedirectToAction("Organisation", "Lk");
         var org = _organisationService.GetUserOrganisation(User);
         var roles = org.Roles.Where(e => e != user.Role).ToList();
         return View(new PromotionRequestViewModel
@@ -82,11 +82,11 @@ public class PromotionController : Controller
     }
 
     [HttpPost]
-    public IActionResult AddMark(bool passed, int requestId)
+    public async Task<IActionResult> AddMark(bool passed, int requestId)
     {
         var request = _promotionService.GetRequestById(requestId);
         if (request == null) return RedirectToAction("Organisation", "Lk");
-        _promotionService.AddMark(User, passed, requestId);
+        await _promotionService.AddMark(User, passed, requestId);
         return RedirectToAction("SeeRequest", new {id = requestId});
     }
     
